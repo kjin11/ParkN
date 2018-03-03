@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/icon_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/renting"
+            android:icon="@drawable/icon_rent"
+            android:title="Renting" />
+        <item
+            android:id="@+id/lending"
+            android:icon="@drawable/icon_share"
+            android:title="Lending" />
+        <item
+            android:id="@+id/notification"
+            android:icon="@drawable/icon_notif"
+            android:title="Notification" />
+        <item
+            android:id="@+id/payment"
+            android:icon="@drawable/icon_pay"
+            android:title="Payment" />
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/icon_settings"
+            android:title="Setting" />
+    </group>
+
+    <item android:title="User">
+        <menu>
+            <item
+                android:id="@+id/sign_in"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Sign in" />
+        </menu>
+    </item>
+
+</menu>
