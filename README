@@ -1,0 +1,6 @@
+The product prototype implement the Front end by using static images, including a left-sliding Navigation View and several pages which use static image for indicating its functionality.
+
+App contains delay-jump welcomepage, sign-in page and main Activities. Welcomepage use handler to implement delay-jump. In sign in page, user now don't need to provide information and could enter the main Activities by clicking Sign in button.
+
+In main Activities, the base template provides left-sliding Navigation and an app_bar_main. According to the item user seletes in navigation, app could commit  corresponding fragment to replace framelayout content_container to show corresponding page. 
+
