@@ -1,6 +1,7 @@
 package com.example.kejin.iot_demo;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -33,8 +34,11 @@ public class MapFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailFragment detailFragment = new DetailFragment();
-                getFragmentManager().beginTransaction().replace(R.id.content_container, detailFragment).commit();
+//                DetailFragment detailFragment = new DetailFragment();
+//                getFragmentManager().beginTransaction().replace(R.id.content_container, detailFragment).commit();
+                Intent intent= new Intent(getActivity().getBaseContext(), DetailActivity.class);
+                startActivity(intent);;
+
             }
         });
     }

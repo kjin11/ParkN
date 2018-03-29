@@ -2,8 +2,41 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_renting"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_renting"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/BluePurpul"
+            app:navigationIcon="@drawable/btn_back"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Renting"
+            app:titleTextColor="#FFFFFF">
+
+        </android.support.v7.widget.Toolbar>
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view_renting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar_renting"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
 
 
 

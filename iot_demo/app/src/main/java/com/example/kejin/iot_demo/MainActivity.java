@@ -1,82 +1,77 @@
 package com.example.kejin.iot_demo;
 
-import android.app.Fragment;
+
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.PagerAdapter;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+
+    private LinearLayout mGallery;
+    private int[] mImgIds;
+    private LayoutInflater mInflater;
+    private Button mStartDateButton;
+    private Button mEndDateButton;
+    private Button mRecurButton;
+    private Button mAmenityButton;
+    private RadioGroup gRecurGroup;
+    private RadioGroup gAmenityGroup;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e("1","I'm in");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mInflater = LayoutInflater.from(this);
+        initData();
+        initView();
 
-        setSupportActionBar(toolbar);
+        Button toolButton = (Button) findViewById(R.id.toolbar);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        View bottomSheet = (View) findViewById(R.id.bottom_sheet);
+        bottomSheet.setBackgroundColor(Color.WHITE);
+        mStartDateButton = (Button) this.findViewById(R.id.start_date_btn);
+        mEndDateButton = (Button) this.findViewById(R.id.end_date_btn);
+        mRecurButton = (Button) this.findViewById(R.id.recur_btn);
+        mAmenityButton = (Button) this.findViewById(R.id.amenity_btn);
 
+
+
+        mStartDateButton.setOnClickListener(this);
+        mEndDateButton.setOnClickListener(this);
+        mRecurButton.setOnClickListener(this);
+        mAmenityButton.setOnClickListener(this);
+        toolButton.setOnClickListener(this);
 
 
         MapFragment mapFragment = new MapFragment();
         getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_left_view);
         navigationView.setNavigationItemSelectedListener(this);
         Log.e("1","I'm out");
-        /*
-        Fragment exFragment = (Fragment)getFragmentManager().findFragmentById(R.id.content_container);
-        Button fakeButton =(Button) exFragment.getView().findViewById(R.id.fake_button_map);
 
-        fakeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DetailFragment detailFragment = new DetailFragment();
-                getFragmentManager().beginTransaction().replace(R.id.content_container, detailFragment).commit();
-            }
-        });
-        */
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
 
@@ -113,11 +108,12 @@ public class MainActivity extends AppCompatActivity
             MapFragment mapFragment = new MapFragment();
             getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
         } else if (id == R.id.renting) {
-            RentingFragment retingFragment = new RentingFragment();
-            getFragmentManager().beginTransaction().replace(R.id.content_container, retingFragment).commit();
+            Intent intent = new Intent(MainActivity.this, RentingActivity.class);
+            startActivity(intent);
         } else if (id == R.id.lending) {
-            LendingFragment lendingFragment = new LendingFragment();
-            getFragmentManager().beginTransaction().replace(R.id.content_container, lendingFragment).commit();
+            Intent intent = new Intent(MainActivity.this, LendingActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.notification) {
             NotificationFragment notificationFragment = new NotificationFragment();
             getFragmentManager().beginTransaction().replace(R.id.content_container, notificationFragment).commit();
@@ -136,4 +132,99 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+    private void initData()
+    {
+        mImgIds = new int[] { R.drawable.icon_car_selected, R.drawable.icon_car_selected, R.drawable.icon_car_selected,
+                R.drawable.icon_car_selected, R.drawable.icon_car_selected, R.drawable.icon_car_selected, R.drawable.icon_car_selected,
+                R.drawable.icon_car_selected, R.drawable.icon_car_selected };
+    }
+
+    private void initView()
+    {
+        mGallery = (LinearLayout) findViewById(R.id.id_gallery);
+
+        for (int i = 0; i < mImgIds.length; i++)
+        {
+
+            View view = mInflater.inflate(R.layout.activity_index_gallery_item,
+                    mGallery, false);
+            ImageView img = (ImageView) view
+                    .findViewById(R.id.id_index_gallery_item_image);
+            img.setImageResource(mImgIds[i]);
+            TextView txt = (TextView) view
+                    .findViewById(R.id.id_index_gallery_item_text);
+            txt.setText("0.5mi");
+            mGallery.addView(view);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.toolbar:
+                Log.e("aa","in toolbar butn");
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                if (drawer.isDrawerOpen(Gravity.LEFT)) {
+                    drawer.closeDrawer((int)Gravity.LEFT);
+                } else{
+                    drawer.openDrawer((int)Gravity.LEFT);
+                }
+            break;
+            case R.id.start_date_btn://开始时间
+                Log.e("aa","in start butn");
+
+                DateChooseWheelViewDialog startDateChooseDialog = new DateChooseWheelViewDialog(MainActivity.this, new DateChooseWheelViewDialog.DateChooseInterface() {
+                    @Override
+                    public void getDateTime(String time, boolean longTimeChecked) {
+                        mStartDateButton.setText(time);
+                    }
+                });
+                startDateChooseDialog.setDateDialogTitle("Start time");
+                startDateChooseDialog.showDateChooseDialog();
+                break;
+            case R.id.end_date_btn://结束时间
+                Log.e("aa","in end butn");
+                DateChooseWheelViewDialog endDateChooseDialog = new DateChooseWheelViewDialog(MainActivity.this,
+                        new DateChooseWheelViewDialog.DateChooseInterface() {
+                            @Override
+                            public void getDateTime(String time, boolean longTimeChecked) {
+                                mEndDateButton.setText(time);
+                            }
+                        });
+                //endDateChooseDialog.setTimePickerGone(true);
+                endDateChooseDialog.setDateDialogTitle("End time");
+                endDateChooseDialog.showDateChooseDialog();
+                break;
+
+            case R.id.recur_btn:
+                Log.e("aa", "in recur btn");
+                RecurChooseDialog recurChooseDialog = new RecurChooseDialog(MainActivity.this, new RecurChooseDialog.RecurChooseInterface() {
+
+                    @Override
+                    public void getRecur(String recur) {
+                        mRecurButton.setText(recur);
+                    }
+                });
+                recurChooseDialog.showRecurChooseDialog();
+                break;
+
+            case R.id.amenity_btn:
+                Log.e("aa", "in amenity btn");
+                AmentityChooseDialog amentityChooseDialog= new AmentityChooseDialog(MainActivity.this, new AmentityChooseDialog.AmenityChooseInterface() {
+                    @Override
+                    public void getAmenity(String amenity) {
+                        mAmenityButton.setText(amenity);
+                    }
+                });
+                amentityChooseDialog.showAmenityChooseDialog();
+            default:
+                break;
+        }
+
+    }
+
 }
