@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">iot_demo</string>
-
+    <string name="app_name">ParkN</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+    <string name="store_name" translatable="false">ParkN CheckOut</string>
+    <string name="googlepay_status_unavailable" translatable="false">Unfortunately, Google Pay is not available on this phone.</string>
+    <string name="googlepay_status_checking" translatable="false">Checking if Google Pay is available...</string>
+    <string name="payments_show_name" translatable="false">Successfully received payment data for %s!</string>
 </resources>
