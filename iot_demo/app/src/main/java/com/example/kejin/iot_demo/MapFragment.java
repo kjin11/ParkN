@@ -34,8 +34,6 @@ public class MapFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DetailFragment detailFragment = new DetailFragment();
-//                getFragmentManager().beginTransaction().replace(R.id.content_container, detailFragment).commit();
                 Intent intent= new Intent(getActivity().getBaseContext(), DetailActivity.class);
                 startActivity(intent);;
 
