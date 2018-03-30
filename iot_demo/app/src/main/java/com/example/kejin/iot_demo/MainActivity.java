@@ -118,8 +118,9 @@ public class MainActivity extends AppCompatActivity
             NotificationFragment notificationFragment = new NotificationFragment();
             getFragmentManager().beginTransaction().replace(R.id.content_container, notificationFragment).commit();
         } else if (id == R.id.payment) {
-            PaymentFragment paymentFragment = new PaymentFragment();
-            getFragmentManager().beginTransaction().replace(R.id.content_container, paymentFragment).commit();
+            //PaymentFragment paymentFragment = new PaymentFragment();
+            //getFragmentManager().beginTransaction().replace(R.id.content_container, paymentFragment).commit();
+            startActivity(new Intent(this, CheckoutActivity.class));
         } else if (id == R.id.setting) {
             SettingFragment settingFragment = new SettingFragment();
             getFragmentManager().beginTransaction().replace(R.id.content_container, settingFragment).commit();

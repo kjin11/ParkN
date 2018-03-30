@@ -1,10 +1,16 @@
 package com.example.kejin.iot_demo;
 
+/***
+ * This is main payment activity for request payment and UI generation
+ * Integrated by WenTing Lee 03/29/2018
+ */
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,7 +28,7 @@ import com.google.android.gms.wallet.PaymentMethodToken;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.TransactionInfo;
 
-public class CheckoutActivity extends Activity {
+public class CheckoutActivity extends AppCompatActivity {
     // Arbitrarily-picked result code.
     private static final int LOAD_PAYMENT_DATA_REQUEST_CODE = 991;
 
@@ -33,12 +39,12 @@ public class CheckoutActivity extends Activity {
 
     private ItemInfo mPlaceHolderItem = new ItemInfo("Your Order", 300 * 1000000, R.drawable.placeholder);
     private long mShippingCost = 90 * 1000000;
-
+    private Toolbar toolbar_detail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-
+        toolbar_detail = (Toolbar) this.findViewById(R.id.toolbar_detail1);
         // Set up the mock information for our item in the UI.
         initItemUI();
 
@@ -55,6 +61,14 @@ public class CheckoutActivity extends Activity {
         // It's recommended to create the PaymentsClient object inside of the onCreate method.
         mPaymentsClient = PaymentsUtil.createPaymentsClient(this);
         checkIsReadyToPay();
+
+        setSupportActionBar(toolbar_detail);
+        toolbar_detail.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void checkIsReadyToPay() {
@@ -170,12 +184,12 @@ public class CheckoutActivity extends Activity {
     }
 
     private void initItemUI() {
-        TextView itemName = findViewById(R.id.text_item_name);
-        ImageView itemImage = findViewById(R.id.image_item_image);
+        //TextView itemName = findViewById(R.id.text_item_name);
+        //ImageView itemImage = findViewById(R.id.image_item_image);
         //TextView itemPrice = findViewById(R.id.text_item_price);
 
-        itemName.setText(mPlaceHolderItem.getName());
-        itemImage.setImageResource(mPlaceHolderItem.getImageResourceId());
+        //itemName.setText(mPlaceHolderItem.getName());
+        //itemImage.setImageResource(mPlaceHolderItem.getImageResourceId());
         //itemPrice.setText(PaymentsUtil.microsToString(mPlaceHolderItem.getPriceMicros()));
     }
 }

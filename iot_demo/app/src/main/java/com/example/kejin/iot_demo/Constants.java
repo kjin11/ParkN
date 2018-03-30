@@ -1,5 +1,10 @@
 package com.example.kejin.iot_demo;
 
+/***
+ * This is the parameter for the payment transaction
+ * Integrated by WenTing Lee 03/29/2018
+ */
+
 import android.util.Pair;
 
 import com.google.android.gms.wallet.WalletConstants;

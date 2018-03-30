@@ -1,7 +1,8 @@
 package com.example.kejin.iot_demo;
 
 /**
- * Used for storing the (hard coded) info about the item we're selling.
+ * This is used for storing the (hard coded) info about the item we're selling.
+ * Integrated by WenTing Lee 03/29/2018
  */
 public class ItemInfo {
     private final String name;

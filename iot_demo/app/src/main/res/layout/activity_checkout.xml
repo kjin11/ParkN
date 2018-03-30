@@ -1,78 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) Google
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    tools:context="com.example.kejin.iot_demo.CheckoutActivity">
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_small"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/text_item_name"
-            style="@android:style/TextAppearance.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/padding_small" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="348dp"
-            android:layout_marginBottom="@dimen/padding_small"
-            android:minHeight="300dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/image_item_image"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_detail1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true" />
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/BluePurpul"
+                app:navigationIcon="@drawable/btn_back"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="Payment"
+                app:titleTextColor="#FFFFFF">
 
-        </LinearLayout>
+            </android.support.v7.widget.Toolbar>
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_xlarge">
-
-            <include
-                android:id="@+id/googlepay_button"
-                layout="@layout/googlepay_button"
-                android:layout_width="@dimen/buy_button_width"
-                android:layout_height="@dimen/buy_button_height"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/googlepay_status"
-                android:layout_width="wrap_content"
+            <ScrollView
+                android:id="@+id/scroll_detail"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/googlepay_status_checking" />
-        </FrameLayout>
+                android:layout_below="@+id/toolbar_detail1"
+                android:layout_above="@+id/book_sheet_detail"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-</ScrollView>
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="120dp"
+                            android:paddingLeft="15dp"
+                            android:src="@drawable/icon_home"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="502 Fifth Ave"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.5 mi"
+                                android:textColor="@color/BluePurpul"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/icon_time"/>
+                        <TextView
+                            android:layout_width="45dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text=" From"
+                            android:textColor="@color/BluePurpul"/>
+                        <Button
+                            android:id="@+id/start_date_btn_detail"
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:hint="2018 3-5 10:30 "
+                            android:background="@drawable/background_white"/>
+
+                        <TextView
+                            android:layout_width="20dp"
+                            android:gravity="center_vertical"
+                            android:layout_height="match_parent"
+                            android:text=" To"
+
+                            android:textColor="@color/BluePurpul"/>
+                        <Button
+                            android:id="@+id/end_date_btn_detail"
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:hint="2018 3-5 11:40"
+                            android:background="@drawable/background_white"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/icon_amenities"/>
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:text="Amentities"
+                            android:textColor="@color/BluePurpul"/>
+                        <Button
+                            android:id="@+id/amenity_btn_detail"
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:hint="   Garage-covered  "
+                            android:background="@drawable/background_white"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="8dp"
+                        android:src="@drawable/detail_picture_example"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/icon_notice"/>
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:text="Total"
+                            android:textColor="@color/BluePurpul"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="10dp"
+                            android:singleLine="false"
+                            android:text="$10 for 3 Hours"
+                            android:textColor="#000000"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+            <RelativeLayout
+                android:id="@+id/book_sheet_detail"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_bottom"
+                >
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_centerVertical="true">
+
+                    <include
+                        android:id="@+id/googlepay_button"
+                        layout="@layout/googlepay_button"
+                        android:layout_width="@dimen/buy_button_width"
+                        android:layout_height="@dimen/buy_button_height"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/googlepay_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+
+                    android:text="@string/googlepay_status_checking" />
+            </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,5 +1,9 @@
-
 package com.example.kejin.iot_demo;
+
+/***
+ * This is the handshaking method for the 3rd party/self-own payment processor
+ * Integrated by WenTing Lee 03/29/2018
+ */
 
 import android.app.Activity;
 import android.util.Pair;

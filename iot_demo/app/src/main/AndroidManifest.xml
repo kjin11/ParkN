@@ -53,11 +53,10 @@
         <!-- This element is for CheckoutActivity -->
         <activity
             android:name="CheckoutActivity"
-            android:label="@string/store_name" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                android:theme="@style/AppTheme.NoActionBar">
             </intent-filter>
         </activity>
         <!-- This element is required in order to use the PaymentsClient -->

@@ -1,6 +1,7 @@
 package com.example.kejin.iot_demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +84,8 @@ public class DetailActivity  extends AppCompatActivity implements OnClickListene
                 break;
 
             case R.id.book_btn_detail:
+                // This is used for booking confirmation
+                startActivity(new Intent(this, CheckoutActivity.class));
                 break;
 
             default:
