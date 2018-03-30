@@ -28,6 +28,7 @@ public class MapFragment extends Fragment {
         return rootView;
     }
 
+
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Button button = (Button) getActivity().findViewById(R.id.fake_button_map);
@@ -40,5 +41,7 @@ public class MapFragment extends Fragment {
             }
         });
     }
+
+
 }
 

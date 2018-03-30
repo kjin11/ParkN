@@ -6,17 +6,17 @@
     android:background="@drawable/googlemap"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-   <Button
-       android:id="@+id/fake_button_map"
-       android:layout_width="45dp"
-       android:layout_height="45dp"
-       android:background="@drawable/mark_10"
-       app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-       app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-       app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-       app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-       app:layout_constraintHorizontal_bias="0.25"
-       app:layout_constraintVertical_bias="0.25" />
+   <!--<Button-->
+       <!--android:id="@+id/fake_button_map"-->
+       <!--android:layout_width="45dp"-->
+       <!--android:layout_height="45dp"-->
+       <!--android:background="@drawable/mark_10"-->
+       <!--app:layout_constraintTop_toTopOf="@+id/constraintLayout"-->
+       <!--app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"-->
+       <!--app:layout_constraintStart_toStartOf="@+id/constraintLayout"-->
+       <!--app:layout_constraintEnd_toEndOf="@+id/constraintLayout"-->
+       <!--app:layout_constraintHorizontal_bias="0.25"-->
+       <!--app:layout_constraintVertical_bias="0.25" />-->
 
 
 
