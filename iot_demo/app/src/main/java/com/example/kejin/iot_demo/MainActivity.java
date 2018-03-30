@@ -4,6 +4,8 @@ package com.example.kejin.iot_demo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -59,10 +61,15 @@ public class MainActivity extends AppCompatActivity
         mRecurButton.setOnClickListener(this);
         mAmenityButton.setOnClickListener(this);
         toolButton.setOnClickListener(this);
-
-
+//        setContentView(R.layout.activity_main);
+        Button toolbar = (Button) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         MapFragment mapFragment = new MapFragment();
-        getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
+//        getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content_container, mapFragment).commit();
+//        MapFragment mapFragment = new MapFragment();
+//        getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
 
 
 
@@ -105,8 +112,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            MapFragment mapFragment = new MapFragment();
-            getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
+
+            MapFragment mapFragment =  new MapFragment();
+            FragmentManager manager = getSupportFragmentManager();
+//                    getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
+            manager.beginTransaction().replace(R.id.content_container, mapFragment).commit();
         } else if (id == R.id.renting) {
             Intent intent = new Intent(MainActivity.this, RentingActivity.class);
             startActivity(intent);
