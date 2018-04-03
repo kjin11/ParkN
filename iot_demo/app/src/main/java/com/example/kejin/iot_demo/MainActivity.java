@@ -22,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
 
@@ -34,8 +37,7 @@ public class MainActivity extends AppCompatActivity
     private Button mAmenityButton;
     private RadioGroup gRecurGroup;
     private RadioGroup gAmenityGroup;
-
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         initView();
 
         Button toolButton = (Button) findViewById(R.id.toolbar);
+        mAuth = FirebaseAuth.getInstance();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         View bottomSheet = (View) findViewById(R.id.bottom_sheet);
         bottomSheet.setBackgroundColor(Color.WHITE);
@@ -53,9 +56,6 @@ public class MainActivity extends AppCompatActivity
         mEndDateButton = (Button) this.findViewById(R.id.end_date_btn);
         mRecurButton = (Button) this.findViewById(R.id.recur_btn);
         mAmenityButton = (Button) this.findViewById(R.id.amenity_btn);
-
-
-
         mStartDateButton.setOnClickListener(this);
         mEndDateButton.setOnClickListener(this);
         mRecurButton.setOnClickListener(this);
@@ -81,6 +81,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
+    }
 
 
     @Override

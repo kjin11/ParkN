@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
 
@@ -16,8 +17,8 @@
             android:orientation="vertical">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="70dp"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
                 android:background="@drawable/icon_car_selected"
                 />
             <TextView
@@ -114,7 +115,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -125,9 +126,11 @@
                 android:layout_height="18dp"
                 android:background="@drawable/right_arror"
                 android:layout_gravity="center_vertical"
+                android:layout_alignParentRight="true"
+
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

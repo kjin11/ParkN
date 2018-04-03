@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "824839790017",
+    "firebase_url": "https://parkn-ed424.firebaseio.com",
+    "project_id": "parkn-ed424",
+    "storage_bucket": "parkn-ed424.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824839790017:android:0608d58f14b203d3",
+        "android_client_info": {
+          "package_name": "com.example.kejin.iot_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824839790017-q6ienbaarmor3hj2lmmlt8treb3orsn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kejin.iot_demo",
+            "certificate_hash": "6fe008ee591162b7b7d2598b4b0d3c74f9a4dafe"
+          }
+        },
+        {
+          "client_id": "824839790017-5oquo4r6ag3tbff5lm83o63vun6am35i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXohJCtP9sv0b2kmTjSHW7nutBIGMKIH4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824839790017-5oquo4r6ag3tbff5lm83o63vun6am35i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

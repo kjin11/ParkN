@@ -71,29 +71,40 @@
                         android:paddingRight="10dp">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:src="@drawable/icon_time"/>
                         <TextView
-                            android:layout_width="45dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:text=" From"
+                            android:layout_weight="1"
                             android:textColor="@color/BluePurpul"/>
                         <Button
                             android:id="@+id/start_date_btn_detail"
-                            android:layout_width="150dp"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:hint="2018 3-5 10:30 "
+                            android:layout_weight="3"
                             android:background="@drawable/background_white"/>
 
                         <TextView
-                            android:layout_width="20dp"
+                            android:layout_width="0dp"
                             android:gravity="center_vertical"
                             android:layout_height="match_parent"
                             android:text=" To"
-
+                            android:layout_weight="1"
                             android:textColor="@color/BluePurpul"/>
+
+                        <Button
+                            android:id="@+id/end_date_btn_detail"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:hint="2018 3-5 15:30"
+                            android:background="@drawable/background_white"/>
 
                     </LinearLayout>
 
@@ -225,19 +236,9 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:gravity="center_vertical"
-
                     android:background="@drawable/btn_book"/>
 
-                <Button
-                    android:id="@+id/end_date_btn_detail"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignLeft="@+id/book_btn_detail"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignStart="@+id/book_btn_detail"
-                    android:layout_marginBottom="230dp"
-                    android:background="@drawable/background_white"
-                    android:hint="2018 3-5 15:30" />
+
             </RelativeLayout>
 
     </RelativeLayout>

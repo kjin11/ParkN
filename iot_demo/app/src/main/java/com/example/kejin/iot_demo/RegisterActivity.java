@@ -1,9 +1,5 @@
 package com.example.kejin.iot_demo;
 
-/**
- * Created by kejin on 25/02/2018.
- */
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,38 +18,43 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 import static android.content.ContentValues.TAG;
 
+/**
+ * Created by kejin on 03/04/2018.
+ */
 
-public class LoginActivity extends Activity {
+public class RegisterActivity extends Activity{
     private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-        Button loginbtn = (Button)findViewById(R.id.signinBtn);
-        Button registerbtn = (Button)findViewById(R.id.registerBtn);
-        final EditText emailAccount = (EditText)findViewById(R.id.accountEt);
-        final EditText passwordAccount = (EditText)findViewById(R.id.pwdEt);
+        setContentView(R.layout.register);
+        final EditText emailText = (EditText) findViewById(R.id.email_register);
+        final EditText passworkText = (EditText) findViewById(R.id.password_register);
+        Button confirm_button = (Button) findViewById(R.id.confirm_register);
         mAuth = FirebaseAuth.getInstance();
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = emailAccount.getText().toString();
-                String password = passwordAccount.getText().toString();
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                String email = (String) emailText.getText().toString();
+                String password = (String) passworkText.getText().toString();
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
+                                    Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                     updateUI(null);
                                 }
@@ -60,29 +62,23 @@ public class LoginActivity extends Activity {
                                 // ...
                             }
                         });
-            }
-        });
-        registerbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+
+
+
             }
         });
 
 
 
     }
-
     private void updateUI(FirebaseUser user) {
         if(user ==null)
             return;
         else{
-            Intent intent= new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
-
 
 
 
