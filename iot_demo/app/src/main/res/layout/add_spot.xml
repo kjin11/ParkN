@@ -42,6 +42,7 @@
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/icon_adress"/>
                 <EditText
+                    android:id="@+id/location_add_spot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
@@ -69,7 +70,7 @@
                     android:id="@+id/addSpot_start_date_btn"
                     android:layout_width="130dp"
                     android:layout_height="20dp"
-                    android:hint="2018 3-5 10:30 "
+                    android:hint="2018 3-5 10:30"
                     android:background="@drawable/background_white"/>
 
                 <TextView
@@ -106,6 +107,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="$"/>
                 <EditText
+                    android:id="@+id/price_add_spot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Input price"
@@ -132,7 +134,7 @@
                     android:id="@+id/addSpot_amenity_btn"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:hint="   Garage-covered  "
+                    android:hint= "Garage-covered"
 
                     android:background="@drawable/background_white"/>
 
@@ -149,6 +151,7 @@
                     android:layout_height="35dp"
                     android:src="@drawable/pen"/>
                 <EditText
+                    android:id="@+id/notes_add_spot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"

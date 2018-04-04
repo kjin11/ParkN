@@ -6,21 +6,42 @@ package com.example.kejin.iot_demo.data_class;
 
 public class DataRecord {
     private String location;
-    private String distance;
+    private int distance;
     private String amenity;
     private String duration;
     private String start_time;
     private String end_time;
+    private int price;
+    private int totoal_money;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getTotoal_money() {
+        return totoal_money;
+    }
+
+    public void setTotoal_money(int totoal_money) {
+        this.totoal_money = totoal_money;
+    }
 
 
-    public DataRecord(String location, String distance, String amenity, String duration, String start_time, String end_time) {
+    public DataRecord(String location, int distance, String amenity, String duration, String start_time, String end_time, int price, int totoal_money) {
         this.location = location;
         this.distance = distance;
         this.amenity = amenity;
         this.duration = duration;
         this.start_time = start_time;
         this.end_time = end_time;
+        this.price = price;
+        this.totoal_money = totoal_money;
     }
+
 
     public String getLocation() {
         return location;
@@ -30,11 +51,11 @@ public class DataRecord {
         this.location = location;
     }
 
-    public String getDistance() {
+    public int getDistance() {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
     }
 

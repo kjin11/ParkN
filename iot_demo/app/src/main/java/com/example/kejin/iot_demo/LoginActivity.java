@@ -40,26 +40,32 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 String email = emailAccount.getText().toString();
                 String password = passwordAccount.getText().toString();
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    updateUI(user);
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
-                                }
+                if(email==null||email.length()==0||password==null||password.length()==0) {
+                    Toast.makeText(LoginActivity.this, "Authentication failed. length can't be zero",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        updateUI(user);
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                        updateUI(null);
+                                    }
 
-                                // ...
-                            }
-                        });
+                                    // ...
+                                }
+                            });
+                }
             }
         });
         registerbtn.setOnClickListener(new View.OnClickListener() {
@@ -70,13 +76,12 @@ public class LoginActivity extends Activity {
             }
         });
 
-
-
     }
 
     private void updateUI(FirebaseUser user) {
         if(user ==null)
-            return;
+            Toast.makeText(LoginActivity.this, "Authentication failed. length can't be zero",
+                    Toast.LENGTH_SHORT).show();
         else{
             Intent intent= new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);

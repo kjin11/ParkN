@@ -34,7 +34,7 @@ public class RecycleviewRecordAdapter  extends RecyclerView.Adapter {
 
         DataRecord dataRecord = mList.get(position);
         vh.getLocation().setText(dataRecord.getLocation());
-        vh.getDistance().setText(dataRecord.getDistance());
+        vh.getDistance().setText(dataRecord.getDistance()+"");
         vh.getAmenity().setText(dataRecord.getAmenity());
         vh.getDuratoin().setText(dataRecord.getDuration());
         vh.getStart_time().setText(dataRecord.getStart_time());
