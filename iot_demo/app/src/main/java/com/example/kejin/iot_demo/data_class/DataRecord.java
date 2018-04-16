@@ -14,6 +14,16 @@ public class DataRecord {
     private int price;
     private int totoal_money;
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    private String owner;
+
     public int getPrice() {
         return price;
     }
@@ -31,7 +41,7 @@ public class DataRecord {
     }
 
 
-    public DataRecord(String location, int distance, String amenity, String duration, String start_time, String end_time, int price, int totoal_money) {
+    public DataRecord(String location, int distance, String amenity, String duration, String start_time, String end_time, int price, int totoal_money, String email) {
         this.location = location;
         this.distance = distance;
         this.amenity = amenity;
@@ -40,6 +50,7 @@ public class DataRecord {
         this.end_time = end_time;
         this.price = price;
         this.totoal_money = totoal_money;
+        this.owner =email;
     }
 
 

@@ -28,6 +28,7 @@ public class LoginActivity extends Activity {
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.e("aa","in login");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         Button loginbtn = (Button)findViewById(R.id.signinBtn);

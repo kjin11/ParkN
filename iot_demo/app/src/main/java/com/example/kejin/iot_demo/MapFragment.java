@@ -1,37 +1,13 @@
 package com.example.kejin.iot_demo;
 
-/**
- * Created by kejin on 24/02/2018.
- */
 
-//public class MapFragment extends Fragment {
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//    }
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        View rootView = inflater.inflate(R.layout.amap_main, container, false);
-//        return rootView;
-//    }
-//
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        Button button = (Button) getActivity().findViewById(R.id.fake_button_map);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent= new Intent(getActivity().getBaseContext(), DetailActivity.class);
-//                startActivity(intent);;
-//
-//            }
-//        });
-//    }
-//}
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -41,7 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.example.kejin.iot_demo.data_class.DataRecord;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -50,46 +26,11 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import android.app.Activity;
-import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kejin on 24/02/2018.
@@ -98,12 +39,14 @@ import java.util.logging.Logger;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     SupportMapFragment mapFragment;
     GoogleMap mMap;
+    List<DataRecord>CurrentAvailableLot;
     private LocationManager mLocationManager;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
 
@@ -220,6 +163,37 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 //        }
 //
 //    }
+    private List<DataRecord> getAvailableLot(){
+        final List<DataRecord> currentAvailableLot = new ArrayList<DataRecord>();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Log.e("firebase","1");
+                String value = dataSnapshot.getValue(String.class);
+                Log.e("firebase","2");
+                DataSnapshot allAvailableLotSnapshot = dataSnapshot.child("Available_Lot");
+                Log.e("firebase","3");
+                Iterable<DataSnapshot> availableLotSnapshots = allAvailableLotSnapshot.getChildren();
+                Log.e("firebase","4");
+                for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
+                    Log.e("firebase","5");
+                    DataRecord c = availableLotSnapshot.getValue(DataRecord.class);
+                    currentAvailableLot.add(c);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // ...
+            }
+        });
+        return currentAvailableLot;
+    }
 
 }
 

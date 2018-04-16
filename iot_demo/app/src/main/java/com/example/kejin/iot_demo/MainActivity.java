@@ -21,9 +21,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.kejin.iot_demo.data_class.DataRecord;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
@@ -41,6 +51,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e("aa","start");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mInflater = LayoutInflater.from(this);
@@ -64,15 +75,14 @@ public class MainActivity extends AppCompatActivity
 //        setContentView(R.layout.activity_main);
         Button toolbar = (Button) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        Log.e("1","I'm ready to go to map");
+
         MapFragment mapFragment = new MapFragment();
 //        getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.content_container, mapFragment).commit();
 //        MapFragment mapFragment = new MapFragment();
 //        getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
-
-
-
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_left_view);
         navigationView.setNavigationItemSelectedListener(this);

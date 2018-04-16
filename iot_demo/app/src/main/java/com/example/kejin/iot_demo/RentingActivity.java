@@ -48,7 +48,7 @@ public class RentingActivity extends AppCompatActivity {
         recyclerView_renting.setLayoutManager(new LinearLayoutManager(this));
         //设置适配器
         for (int i = 0; i < 10; i++) {
-            DataRecord item = new DataRecord("1739 Sixth Ave"+i, 5, "Garage-covered"+i, "3h"+i,"Feb 23 10AM"+i,"Feb23 1PM"+i, 0, 0);
+            DataRecord item = new DataRecord("1739 Sixth Ave"+i, 5, "Garage-covered"+i, "3h"+i,"Feb 23 10AM"+i,"Feb23 1PM"+i, 0, 0,"jinke2018@gmail.com");
             mList.add(item);
         }
         RecycleviewRecordAdapter Myadapter = new RecycleviewRecordAdapter(mList);

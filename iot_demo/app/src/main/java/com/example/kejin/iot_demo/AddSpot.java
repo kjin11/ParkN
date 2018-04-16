@@ -17,8 +17,14 @@ import com.example.kejin.iot_demo.data_class.DataRecord;
 import com.example.kejin.iot_demo.data_class.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -129,10 +135,43 @@ public class AddSpot extends AppCompatActivity implements ViewStub.OnClickListen
                 String notes = notes_textview.getText().toString();
                 String email = currentUser.getEmail().toString();
                 email = email.split("\\.")[0];
-                DataRecord new_record = new DataRecord(location,0,amenity,"",start_time,end_time,price,10);
-                mDatabase.child("Users").child(email).child("Records").push().setValue(new_record);
+                DataRecord new_record = new DataRecord(location,5,amenity,"",start_time,end_time,price,5, email);
+                mDatabase.child("Users").child(email).child("Records").child("Sharing").push().setValue(new_record);
+                mDatabase.child("Available_Lot").push().setValue(new_record);
+                mDatabase.child("Users").child(email).child("Records").child("Share_History").push().setValue(new_record);
+
                 Toast.makeText(AddSpot.this, "Add Spot Successfully.",
                         Toast.LENGTH_SHORT).show();
+                final List<DataRecord> currentAvailableLot = new ArrayList<DataRecord>();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Available_Lot");
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        Log.e("firebase","1");
+
+                        Log.e("firebase","3");
+                        Iterable<DataSnapshot> availableLotSnapshots = dataSnapshot.getChildren();
+                        Log.e("firebase","4");
+                        for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
+                            Log.e("firebase","5");
+                            DataRecord c = availableLotSnapshot.getValue(DataRecord.class);
+                            currentAvailableLot.add(c);
+                        }
+                        Toast.makeText(AddSpot.this, "Data loaded",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // ...
+                    }
+                });
+
+
+                finish();
 
 
 
