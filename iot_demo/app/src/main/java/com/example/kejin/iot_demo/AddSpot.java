@@ -142,33 +142,33 @@ public class AddSpot extends AppCompatActivity implements ViewStub.OnClickListen
 
                 Toast.makeText(AddSpot.this, "Add Spot Successfully.",
                         Toast.LENGTH_SHORT).show();
-                final List<DataRecord> currentAvailableLot = new ArrayList<DataRecord>();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Available_Lot");
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        Log.e("firebase","1");
-
-                        Log.e("firebase","3");
-                        Iterable<DataSnapshot> availableLotSnapshots = dataSnapshot.getChildren();
-                        Log.e("firebase","4");
-                        for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
-                            Log.e("firebase","5");
-                            DataRecord c = availableLotSnapshot.getValue(DataRecord.class);
-                            currentAvailableLot.add(c);
-                        }
-                        Toast.makeText(AddSpot.this, "Data loaded",
-                                Toast.LENGTH_SHORT).show();
-
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // ...
-                    }
-                });
+//                final List<DataRecord> currentAvailableLot = new ArrayList<DataRecord>();
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference myRef = database.getReference("Available_Lot");
+//                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        // This method is called once with the initial value and again
+//                        // whenever data at this location is updated.
+//                        Log.e("firebase","1");
+//
+//                        Log.e("firebase","3");
+//                        Iterable<DataSnapshot> availableLotSnapshots = dataSnapshot.getChildren();
+//                        Log.e("firebase","4");
+//                        for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
+//                            Log.e("firebase","5");
+//                            DataRecord c = availableLotSnapshot.getValue(DataRecord.class);
+//                            currentAvailableLot.add(c);
+//                        }
+//                        Toast.makeText(AddSpot.this, "Data loaded",
+//                                Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                        // ...
+//                    }
+//                });
 
 
                 finish();

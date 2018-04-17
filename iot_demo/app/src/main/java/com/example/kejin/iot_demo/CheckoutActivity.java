@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.kejin.iot_demo.data_class.DataRecord;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +27,10 @@ import com.google.android.gms.wallet.PaymentDataRequest;
 import com.google.android.gms.wallet.PaymentMethodToken;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.TransactionInfo;
+import com.google.firebase.database.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class CheckoutActivity extends AppCompatActivity {
     // Arbitrarily-picked result code.
@@ -36,10 +40,15 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private View mGooglePayButton;
     private TextView mGooglePayStatusText;
-
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    ///private DatabaseReference myRef = database.getReference().getRoot();
+    private DatabaseReference myRef = database.getReference();
     private ItemInfo mPlaceHolderItem = new ItemInfo("Your Order", 300 * 1000000, R.drawable.placeholder);
     private long mShippingCost = 90 * 1000000;
     private Toolbar toolbar_detail;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +60,33 @@ public class CheckoutActivity extends AppCompatActivity {
         mGooglePayButton = findViewById(R.id.googlepay_button);
         mGooglePayStatusText = findViewById(R.id.googlepay_status);
 
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
         mGooglePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                myRef.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        DataSnapshot allAvailableLotSnapshot = dataSnapshot.child("Available_Lot");
+                        Iterable<DataSnapshot> availableLotSnapshots = allAvailableLotSnapshot.getChildren();
+                        for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
+                            DataRecord profile = availableLotSnapshot.getValue(DataRecord.class);
+                            if (profile.getLocation().toString().equals("OBJECT FROM MAP")){
+                                availableLotSnapshot.getRef().setValue(null);
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        // Failed to read value
+                        Log.e("TAG", "Failed to read value.", error.toException());
+                    }
+                });
+
                 requestPayment(view);
             }
         });

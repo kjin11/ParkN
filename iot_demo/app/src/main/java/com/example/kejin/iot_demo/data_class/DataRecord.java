@@ -52,8 +52,7 @@ public class DataRecord {
         this.totoal_money = totoal_money;
         this.owner =email;
     }
-
-
+    public DataRecord() {}
     public String getLocation() {
         return location;
     }
