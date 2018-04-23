@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "824839790017-3e84v163tfutjh15h50mtrfcrahoevrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kejin.iot_demo",
+            "certificate_hash": "08d538e4b89ef121e704a8807e22bdae765c1e6a"
+          }
+        },
+        {
           "client_id": "824839790017-q6ienbaarmor3hj2lmmlt8treb3orsn4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

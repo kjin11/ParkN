@@ -18,9 +18,10 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp">
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/input_search"
                 android:hint="Search where to park"
                 android:background="@drawable/background"/>
         </LinearLayout>
@@ -140,6 +141,7 @@
                 android:layout_width="300dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/btn_search"
+                android:id="@+id/btn_search"
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
