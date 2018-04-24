@@ -306,18 +306,29 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
                         && !marker.getSnippet().equals("Target Place")){
 
                     DataRecord detail = detailMarkerMap.get(marker);
-                    Intent intent = new Intent(getActivity(), DetailActivity.class);
-                    intent.putExtra("location", detail.getLocation());
-                    intent.putExtra("amenity", detail.getAmenity());
-                    intent.putExtra("distance", detail.getDistance());
-                    intent.putExtra("end_time", detail.getEnd_time());
-                    intent.putExtra("owner", detail.getOwner());
-                    intent.putExtra("duration", detail.getDuration());
-                    intent.putExtra("price", detail.getPrice());
-                    intent.putExtra("start_time", detail.getStart_time());
-                    intent.putExtra("total_money", detail.getTotoal_money());
-                    startActivity(intent);
-                    Log.e(TAG,"sent to detail!");
+//                    Intent detail_intent = new Intent(getActivity(), DetailActivity.class);
+//                    detail_intent.putExtra("location", detail.getLocation());
+//                    detail_intent.putExtra("amenity", detail.getAmenity());
+//                    detail_intent.putExtra("distance", detail.getDistance());
+//                    detail_intent.putExtra("end_time", detail.getEnd_time());
+//                    detail_intent.putExtra("owner", detail.getOwner());
+//                    detail_intent.putExtra("duration", detail.getDuration());
+//                    detail_intent.putExtra("price", detail.getPrice());
+//                    detail_intent.putExtra("start_time", detail.getStart_time());
+//                    detail_intent.putExtra("total_money", detail.getTotoal_money());
+//                    startActivity(detail_intent);
+                    Intent checkout_intent = new Intent(getActivity(), CheckoutActivity.class);
+                    checkout_intent.putExtra("location", detail.getLocation());
+                    checkout_intent.putExtra("amenity", detail.getAmenity());
+                    checkout_intent.putExtra("distance", detail.getDistance());
+                    checkout_intent.putExtra("end_time", detail.getEnd_time());
+                    checkout_intent.putExtra("owner", detail.getOwner());
+                    checkout_intent.putExtra("duration", detail.getDuration());
+                    checkout_intent.putExtra("price", detail.getPrice());
+                    checkout_intent.putExtra("start_time", detail.getStart_time());
+                    checkout_intent.putExtra("total_money", detail.getTotoal_money());
+                    startActivity(checkout_intent);
+                    Log.e(TAG,"sent to Checkout!" + detail.getLocation());
                     return true;
                 }
                 return false;

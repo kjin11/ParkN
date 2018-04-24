@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -144,13 +145,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.notification) {
             NotificationFragment notificationFragment = new NotificationFragment();
             getFragmentManager().beginTransaction().replace(R.id.content_container, notificationFragment).commit();
-        } else if (id == R.id.payment) {
-            //PaymentFragment paymentFragment = new PaymentFragment();
-            //getFragmentManager().beginTransaction().replace(R.id.content_container, paymentFragment).commit();
-            startActivity(new Intent(this, CheckoutActivity.class));
+//        } else if (id == R.id.payment) {
+//            //PaymentFragment paymentFragment = new PaymentFragment();
+//            //getFragmentManager().beginTransaction().replace(R.id.content_container, paymentFragment).commit();
+//            startActivity(new Intent(this, CheckoutActivity.class));
         } else if (id == R.id.setting) {
-            SettingFragment settingFragment = new SettingFragment();
-            getFragmentManager().beginTransaction().replace(R.id.content_container, settingFragment).commit();
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+//            SettingFragment settingFragment = new SettingFragment();
+//            getFragmentManager().beginTransaction().replace(R.id.content_container, settingFragment).commit();
         } else if (id == R.id.sign_in) {
             SignInFragment signInFragment = new SignInFragment();
             getFragmentManager().beginTransaction().replace(R.id.content_container, signInFragment).commit();
