@@ -75,9 +75,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Executor;
 
 
@@ -99,11 +101,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     private ChildEventListener mChildEventListener;
     Marker marker;
     LatLng cur = new LatLng(40.443852, -79.942905);
-    List<DataRecord>  mCurrentAvailableLot;
+    Set<DataRecord> mCurrentAvailableLot = new HashSet<>();
     private HashMap<Marker, DataRecord> detailMarkerMap = new HashMap<>();
     private HashMap<DataRecord, Marker> recordToMarker = new HashMap<>();
 
-    List<Address> list = new ArrayList<>();
+    List<Address> mList = new ArrayList<>();  //search result from text
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private Location mLocation;
@@ -181,6 +183,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 //            ft.replace(R.id.content_container, mapFragment).commit();
 //
 //        }
+
         mapFragment.getMapAsync(this);
 //
 //        ChildEventListener mChildEventListener;
@@ -216,6 +219,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 //        mMap.setMyLocationEnabled(true);
 //        mMap.getUiSettings().setMyLocationButtonEnabled(false);
         init();
+        mCurrentAvailableLot = getAvailableLot();
         mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLocation != null) {
             final double latitude = mLocation.getLatitude();
@@ -326,15 +330,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
 
         //read data from Firebase and show on GoogleMap
-        mCurrentAvailableLot = getAvailableLot();
 
+        mCurrentAvailableLot = getAvailableLot();
 
 
     }
 
 
-    private List<DataRecord> getAvailableLot() {
-        final List<DataRecord> currentAvailableLot = new ArrayList<DataRecord>();
+    private Set<DataRecord> getAvailableLot() {
+        final Set<DataRecord> currentAvailableLot = new HashSet<>();
         ChildEventListener mChildEventListener;
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
@@ -437,7 +441,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
     private void init(){
         Log.e(TAG, "init: initializing");
+//        mCurrentAvailableLot = getAvailableLot();
+        Log.e("in init:", mCurrentAvailableLot.size()+"");
 
+       for(DataRecord d :mCurrentAvailableLot) {
+
+           Log.e("in init:", d.getLocation());
+
+       }
         mSearchText.setOnItemClickListener(mAutocompleteClickListener);
 
         mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this.getContext(), mGoogleApiClient,
@@ -472,17 +483,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         Log.e("searchString", searchString);
         Geocoder geocoder = new Geocoder(this.getContext());
 //        Log.e("in geoLocate", geocoder.toString());
-        list = new ArrayList<>();
+        mList = new ArrayList<>();
         try{
             if(searchString != null && searchString.length() >= 20){
-                list = geocoder.getFromLocationName(searchString.substring(20), 1);
+                mList = geocoder.getFromLocationName(searchString.substring(20), 1);
             } else {
-                list = geocoder.getFromLocationName(searchString, 1);
+                mList = geocoder.getFromLocationName(searchString, 1);
 
             }
-            Log.e("list is empty?", list.isEmpty() + "");
-            for (Address a : list){
-                Log.e("length", list.size() + "");
+            Log.e("list is empty?", mList.isEmpty() + "");
+            for (Address a : mList){
+                Log.e("length", mList.size() + "");
                 Log.e("in geoLocate2", a.toString());
             }
 
@@ -490,8 +501,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
             Log.e(TAG, "geoLocate: IOException: " + e.getMessage() );
         }
 
-        if(list.size() > 0){
-            Address address = list.get(0);
+        if(mList.size() > 0){
+            Address address = mList.get(0);
 
             Log.e(TAG, "geoLocate: found a location: " + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
@@ -553,6 +564,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         displayLocation();
+
+
     }
 
     @Override
@@ -654,7 +667,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
                 Log.e(TAG, "onResult: NullPointerException: " + e.getMessage() );
             }
 //
-            if(list == null || list.size() == 0){
+            if(mList == null || mList.size() == 0){
                 moveCamera(new LatLng(place.getViewport().getCenter().latitude,
                         place.getViewport().getCenter().longitude), DEFAULT_ZOOM, mPlace.getName());
             }

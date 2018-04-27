@@ -130,10 +130,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.home) {
 
-            MapFragment mapFragment =  new MapFragment();
-            FragmentManager manager = getSupportFragmentManager();
+//            MapFragment mapFragment =  new MapFragment();
+//            FragmentManager manager = getSupportFragmentManager();
 //                    getFragmentManager().beginTransaction().replace(R.id.content_container, mapFragment).commit();
-            manager.beginTransaction().replace(R.id.content_container, mapFragment).commit();
+//            manager.beginTransaction().replace(R.id.content_container, mapFragment).commit();
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.renting) {
             Intent intent = new Intent(MainActivity.this, RentingActivity.class);
             startActivity(intent);
@@ -202,7 +204,7 @@ public class MainActivity extends AppCompatActivity
                     drawer.openDrawer((int)Gravity.LEFT);
                 }
             break;
-            case R.id.start_date_btn://开始时间
+            case R.id.start_date_btn://start time
                 Log.e("aa","in start butn");
 
                 DateChooseWheelViewDialog startDateChooseDialog = new DateChooseWheelViewDialog(MainActivity.this, new DateChooseWheelViewDialog.DateChooseInterface() {
@@ -214,7 +216,7 @@ public class MainActivity extends AppCompatActivity
                 startDateChooseDialog.setDateDialogTitle("Start time");
                 startDateChooseDialog.showDateChooseDialog();
                 break;
-            case R.id.end_date_btn://结束时间
+            case R.id.end_date_btn://end time
                 Log.e("aa","in end butn");
                 DateChooseWheelViewDialog endDateChooseDialog = new DateChooseWheelViewDialog(MainActivity.this,
                         new DateChooseWheelViewDialog.DateChooseInterface() {
