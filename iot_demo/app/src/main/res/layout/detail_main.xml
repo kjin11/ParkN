@@ -51,6 +51,8 @@
                             android:paddingLeft="10dp"
                             >
                             <TextView
+                                android:id="@+id/location_detail"
+                                android:gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="502 Fifth Ave"/>
@@ -82,11 +84,12 @@
                             android:text=" From"
                             android:layout_weight="1"
                             android:textColor="@color/BluePurpul"/>
-                        <Button
-                            android:id="@+id/start_date_btn_detail"
+                        <TextView
+                            android:id="@+id/start_date_txt_detail"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:hint="2018 3-5 10:30 "
+                            android:gravity="center"
                             android:layout_weight="3"
                             android:background="@drawable/background_white"/>
 
@@ -98,9 +101,10 @@
                             android:layout_weight="1"
                             android:textColor="@color/BluePurpul"/>
 
-                        <Button
-                            android:id="@+id/end_date_btn_detail"
+                        <TextView
+                            android:id="@+id/end_date_txt_detail"
                             android:layout_width="0dp"
+                            android:gravity="center"
                             android:layout_height="match_parent"
                             android:layout_weight="3"
                             android:hint="2018 3-5 15:30"

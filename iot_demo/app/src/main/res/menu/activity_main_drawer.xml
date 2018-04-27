@@ -20,10 +20,10 @@
             android:id="@+id/notification"
             android:icon="@drawable/icon_notif"
             android:title="Notification" />
-        <item
+        <!---item
             android:id="@+id/payment"
             android:icon="@drawable/icon_pay"
-            android:title="Payment" />
+            android:title="Payment" /-->
         <item
             android:id="@+id/setting"
             android:icon="@drawable/icon_settings"

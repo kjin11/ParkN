@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +49,14 @@ public class CheckoutActivity extends AppCompatActivity {
     private long mShippingCost = 90 * 1000000;
     private Toolbar toolbar_detail;
 
+    private TextView start_time;
+    private TextView end_time;
+    private TextView location;
+    private TextView amenity;
+    private TextView total_money;
+    private TextView owner;
+    private TextView distance;
+
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     @Override
@@ -56,6 +66,24 @@ public class CheckoutActivity extends AppCompatActivity {
         toolbar_detail = (Toolbar) this.findViewById(R.id.toolbar_detail1);
         // Set up the mock information for our item in the UI.
         initItemUI();
+
+        Bundle bundle = getIntent().getExtras();
+        //String location = bundle.get("location").toString();
+        Log.e ("myApplication", bundle.get("location") + " is a key in the bundle");
+        location = (TextView) this.findViewById(R.id.location_detail);
+        location.setText(bundle.get("location").toString());
+        start_time = (TextView) this.findViewById(R.id.start_date_txt_detail);
+        start_time.setText(bundle.get("start_time").toString());
+        end_time = (TextView) this.findViewById(R.id.end_date_txt_detail);
+        end_time.setText(bundle.get("end_time").toString());
+        amenity = (TextView) this.findViewById(R.id.amenity_txt_detail);
+        amenity.setText(bundle.get("amenity").toString());
+        total_money = (TextView) this.findViewById(R.id.total_money_txt);
+        total_money.setText("$ " + bundle.get("total_money").toString());
+        owner = (TextView) this.findViewById(R.id.owner);
+        owner.setText(bundle.get("owner").toString());
+        distance = (TextView) this.findViewById(R.id.distance);
+        distance.setText(bundle.get("distance").toString() + " Miles");
 
         mGooglePayButton = findViewById(R.id.googlepay_button);
         mGooglePayStatusText = findViewById(R.id.googlepay_status);
@@ -69,11 +97,12 @@ public class CheckoutActivity extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        Bundle match = getIntent().getExtras();
                         DataSnapshot allAvailableLotSnapshot = dataSnapshot.child("Available_Lot");
                         Iterable<DataSnapshot> availableLotSnapshots = allAvailableLotSnapshot.getChildren();
                         for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
                             DataRecord profile = availableLotSnapshot.getValue(DataRecord.class);
-                            if (profile.getLocation().toString().equals("OBJECT FROM MAP")){
+                            if (profile.getLocation().toString().equals(match.get("location").toString())){
                                 availableLotSnapshot.getRef().setValue(null);
                             }
                         }
