@@ -84,8 +84,8 @@ public class CheckoutActivity extends AppCompatActivity {
         amenity = (TextView) this.findViewById(R.id.amenity_txt_detail);
         amenity.setText(bundle.get("amenity").toString());
         final String new_amenity = bundle.get("amenity").toString();
-        total_money = (TextView) this.findViewById(R.id.total_money_txt);
-        total_money.setText("$ " + bundle.get("total_money").toString());
+        //total_money = (TextView) this.findViewById(R.id.total_money_txt);
+        //total_money.setText("$ " + bundle.get("total_money").toString());
         final String new_total_money =  bundle.get("total_money").toString();
         owner = (TextView) this.findViewById(R.id.owner);
         owner.setText(bundle.get("owner").toString());

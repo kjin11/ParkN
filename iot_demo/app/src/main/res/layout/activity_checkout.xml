@@ -15,7 +15,7 @@
                 android:background="@color/BluePurpul"
                 app:navigationIcon="@drawable/btn_back"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="Payment"
+                app:title="Detail"
                 app:titleTextColor="#FFFFFF">
 
             </android.support.v7.widget.Toolbar>
@@ -170,25 +170,7 @@
                             android:textSize="16sp"
                             android:background="@drawable/background_white"/>
 
-                        <TextView
-                            android:layout_width="45dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="10dp"
-                            android:text="Total"
-                            android:textColor="@color/BluePurpul"
-                            />
-                        <TextView
-                            android:id="@+id/total_money_txt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="10dp"
-                            android:gravity="center"
-                            android:textSize="16sp"
-                            android:singleLine="false"
-                            android:text="$10"
-                            android:textColor="#000000"/>
+
 
                     </LinearLayout>
 
