@@ -447,7 +447,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
     private void init(){
         Log.e(TAG, "init: initializing");
-        mCurrentAvailableLot = getAvailableLot();
+//        mCurrentAvailableLot = getAvailableLot();
         Log.e("in init:", mCurrentAvailableLot.size()+"");
 
        for(DataRecord d :mCurrentAvailableLot) {

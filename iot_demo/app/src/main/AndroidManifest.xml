@@ -19,11 +19,7 @@
             android:name=".Welcom"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".MainActivity"
@@ -32,31 +28,35 @@
         </activity>
 
         <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+   </activity>
 
-        <activity android:name=".DetailActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+   <activity android:name=".DetailActivity"
+       android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
+   </activity>
 
-        <activity android:name=".LendingActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+   <activity android:name=".LendingActivity"
+       android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
+   </activity>
 
-        <activity android:name=".RentingActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+   <activity android:name=".RentingActivity"
+       android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
+   </activity>
 
-        <activity android:name=".AddSpot"
-            android:theme="@style/AppTheme.NoActionBar">
+   <activity android:name=".AddSpot"
+       android:theme="@style/AppTheme.NoActionBar">
 
-        </activity>
-        <!-- This element is for CheckoutActivity -->
+   </activity>
+   <!-- This element is for CheckoutActivity -->
         <activity
-            android:name="CheckoutActivity"
+            android:name=".CheckoutActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -167,8 +167,7 @@ public class AddSpot extends AppCompatActivity implements ViewStub.OnClickListen
 //                });
 
 
-                Intent intent = new Intent(AddSpot.this, MainActivity.class);
-                startActivity(intent);
+                finish();
 
 
 

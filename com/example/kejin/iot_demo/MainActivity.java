@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.notification) {
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            startActivity(intent);
+            NotificationFragment notificationFragment = new NotificationFragment();
+            getFragmentManager().beginTransaction().replace(R.id.content_container, notificationFragment).commit();
 //        } else if (id == R.id.payment) {
 //            //PaymentFragment paymentFragment = new PaymentFragment();
 //            //getFragmentManager().beginTransaction().replace(R.id.content_container, paymentFragment).commit();
@@ -151,15 +151,9 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
 //            SettingFragment settingFragment = new SettingFragment();
 //            getFragmentManager().beginTransaction().replace(R.id.content_container, settingFragment).commit();
-        //} else if (id == R.id.sign_in) {
-        //    SignInFragment signInFragment = new SignInFragment();
-         //   getFragmentManager().beginTransaction().replace(R.id.content_container, signInFragment).commit();
-        } else if (id == R.id.log_out) {
-            mAuth.signOut();
-            Log.e("asd","Log out");
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-
+        } else if (id == R.id.sign_in) {
+            SignInFragment signInFragment = new SignInFragment();
+            getFragmentManager().beginTransaction().replace(R.id.content_container, signInFragment).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -255,7 +249,6 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
                 amentityChooseDialog.showAmenityChooseDialog();
-
             default:
                 break;
         }

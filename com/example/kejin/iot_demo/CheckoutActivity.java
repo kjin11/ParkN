@@ -57,7 +57,6 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextView owner;
     private TextView distance;
 
-    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     @Override
@@ -70,52 +69,31 @@ public class CheckoutActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         //String location = bundle.get("location").toString();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         Log.e ("myApplication", bundle.get("location") + " is a key in the bundle");
         location = (TextView) this.findViewById(R.id.location_detail);
         location.setText(bundle.get("location").toString());
-        final String new_location = bundle.get("location").toString();
         start_time = (TextView) this.findViewById(R.id.start_date_txt_detail);
         start_time.setText(bundle.get("start_time").toString());
-        final String new_start_time = bundle.get("start_time").toString();
         end_time = (TextView) this.findViewById(R.id.end_date_txt_detail);
         end_time.setText(bundle.get("end_time").toString());
-        final String new_end_time   = bundle.get("end_time").toString();
         amenity = (TextView) this.findViewById(R.id.amenity_txt_detail);
         amenity.setText(bundle.get("amenity").toString());
-        final String new_amenity = bundle.get("amenity").toString();
         total_money = (TextView) this.findViewById(R.id.total_money_txt);
         total_money.setText("$ " + bundle.get("total_money").toString());
-        final String new_total_money =  bundle.get("total_money").toString();
         owner = (TextView) this.findViewById(R.id.owner);
         owner.setText(bundle.get("owner").toString());
-        final String new_owner = bundle.get("owner").toString();
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        String email = currentUser.getEmail().toString();
-        email = email.split("\\.")[0];
-        System.out.println(new_owner);
-        System.out.println(new_owner);
-        Log.e("a",new_owner);
-        Log.e("a",new_owner);
-        Log.e("a",new_owner);
         distance = (TextView) this.findViewById(R.id.distance);
         distance.setText(bundle.get("distance").toString() + " Miles");
-        final String new_distance = bundle.get("distance").toString();
-        final int new_price    = Integer.parseInt(bundle.get("price").toString());
 
         mGooglePayButton = findViewById(R.id.googlepay_button);
         mGooglePayStatusText = findViewById(R.id.googlepay_status);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        DataRecord new_record = new DataRecord(new_location,5,new_amenity,"",new_start_time,new_end_time,new_price,new_price*3, new_owner);
-        mDatabase.child("Users").child(email).child("Records").child("Renting").push().setValue(new_record);
-        mDatabase.child("Users").child(email).child("Records").child("Renting_history").push().setValue(new_record);
         mGooglePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                myRef.addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -126,16 +104,6 @@ public class CheckoutActivity extends AppCompatActivity {
                             DataRecord profile = availableLotSnapshot.getValue(DataRecord.class);
                             if (profile.getLocation().toString().equals(match.get("location").toString())){
                                 availableLotSnapshot.getRef().setValue(null);
-                                Log.e("asdasd","pay successful");
-                            }
-                        }
-                        DataSnapshot allAvailableLotSnapshot2 = dataSnapshot.child("Users").child(new_owner).child("Sharing");
-                        Iterable<DataSnapshot> availableLotSnapshots2 = allAvailableLotSnapshot.getChildren();
-                        for (DataSnapshot availableLotSnapshot : availableLotSnapshots) {
-                            DataRecord profile = availableLotSnapshot.getValue(DataRecord.class);
-                            if (profile.getLocation().toString().equals(match.get("location").toString())){
-                                availableLotSnapshot.getRef().setValue(null);
-                                Log.e("asdasd","pay successful");
                             }
                         }
 
@@ -247,8 +215,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
             // Use token.getToken() to get the token string.
             Log.d("PaymentData", "PaymentMethodToken received");
-            Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
-            startActivity(intent);
         }
     }
 

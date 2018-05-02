@@ -33,9 +33,9 @@
     <item android:title="User">
         <menu>
             <item
-                android:id="@+id/sign_in"
+                android:id="@+id/log_out"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Sign in" />
+                android:title="Logout" />
         </menu>
     </item>
 

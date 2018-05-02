@@ -20,8 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
 
@@ -37,9 +35,7 @@ public class LoginActivity extends Activity {
         Button registerbtn = (Button)findViewById(R.id.registerBtn);
         final EditText emailAccount = (EditText)findViewById(R.id.accountEt);
         final EditText passwordAccount = (EditText)findViewById(R.id.pwdEt);
-        //removeDataFromDatabase();
         mAuth = FirebaseAuth.getInstance();
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,10 +89,6 @@ public class LoginActivity extends Activity {
         }
     }
 
-    void removeDataFromDatabase(){
-        DatabaseReference root = FirebaseDatabase.getInstance().getReference();
-        root.setValue(null);
-    }
 
 
 
