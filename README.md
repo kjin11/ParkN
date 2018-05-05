@@ -1,6 +1,6 @@
 # ParkN - Your Peer-to-Peer Parking Solution 
 
-![Main Page]((https://github.com/kjin11/ParkN/blob/master/iot_demo/app/src/main/res/drawable/1A7390B2-CE17-4AFC-B8CA-BAA26028B01B.png)
+![image]((https://github.com/kjin11/ParkN/blob/master/iot_demo/app/src/main/res/drawable/1A7390B2-CE17-4AFC-B8CA-BAA26028B01B.png)
 
 ## MVC Frameworks:
 
